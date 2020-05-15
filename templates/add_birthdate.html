@@ -1,0 +1,20 @@
+{% extends "header_footer.html" %}
+
+{% block content %}
+
+<form>
+    <div class="form-row">
+        <div class="col-sm-6 mb-3">
+            <label for="validationServer01">Name</label>
+            <input type="text" class="form-control" id="validationServer01" placeholder="FirstName    MiddleName    LastName" required>
+        </div>
+        <div class="col-sm-6 mb-3">
+            <label for="id_birthdate">Birth Date</label>
+            <input type="date" class="form-control" id="id_birthdate" name="birthdate" placeholder="Birth Date" required>
+        </div>
+    </div>
+    
+    <button class="btn btn-dark" type="submit">Submit</button>
+</form>
+       
+{% endblock %}
