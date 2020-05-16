@@ -2,19 +2,6 @@
 
 {% block content %}
 
-<form action="{{url_for("add_birthdate_db")}}" method="POST">
-    <div class="form-row">
-        <div class="col-sm-6 mb-3">
-            <label for="id_name">Name</label>
-            <input type="text" class="form-control" id="id_name" name="name" placeholder="FirstName    MiddleName    LastName" required>
-        </div>
-        <div class="col-sm-6 mb-3">
-            <label for="id_birthdate">Birth Date</label>
-            <input type="date" class="form-control" id="id_birthdate" name="birthdate" placeholder="Birth Date" required>
-        </div>
-    </div>
-    
-    <button class="btn btn-dark" type="submit">Submit</button>
-</form>
+
        
 {% endblock %}
