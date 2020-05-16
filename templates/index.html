@@ -29,5 +29,46 @@
                 <button type="submit" class="btn btn-dark">Submit</button>
                   
             </form>
+
+            <hr>
+
+            <div class="text-center">
+                <h2> Birthdates today </h2>
+            </div>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for b_id, name, birthdate, photo_path in birthdates_today %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{name}}</td>
+                        <td>{{birthdate}}</td>
+                        <td><img src="{{url_for("static", filename="uploaded_photos/"+photo_path)}}" alt="None" class="img-thumbnail"></td>
+                        <td>
+                            <form action="{{url_for("update_birthdate")}}" method="post">
+                                <input type="number" class="form-control" id="id_b_id" name="b_id" value="{{b_id}}" hidden>
+                                <button type="submit" class="btn btn-dark">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{url_for("delete_birthdate")}}" method="post">
+                                <input type="number" class="form-control" id="id_b_id" name="b_id" value="{{b_id}}" hidden>
+                                <button type="submit" class="btn btn-dark">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
       
 {% endblock %}

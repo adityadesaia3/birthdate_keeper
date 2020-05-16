@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
-from birthdate_db import add_birthdate_to_db, create_db, get_max_id, fetch_birthdates_from_db, fetch_single_birthdate_from_db, update_birthdate_from_db, delete_birthdate_from_db
+from birthdate_db import add_birthdate_to_db, create_db, get_max_id, fetch_birthdates_from_db, fetch_single_birthdate_from_db, update_birthdate_from_db, delete_birthdate_from_db, fetch_birthdates_today
 
 app = Flask(__name__)
 
@@ -23,7 +23,8 @@ def allowed_file(filename):
 @app.route("/")
 def index():
     create_db()
-    return render_template("index.html")
+    birthdates_today = fetch_birthdates_today()
+    return render_template("index.html", birthdates_today = birthdates_today)
 
 @app.route("/add_birthdate_db", methods=["GET", "POST"])
 def add_birthdate_db():

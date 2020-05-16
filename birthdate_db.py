@@ -28,6 +28,30 @@ def get_max_id():
     else:
         return 0
 
+def fetch_birthdates_today():
+    birthdate_data = None
+    connection = None
+    try:
+        connection = mysql.connector.connect(host="localhost", user="root", password="", database="birthdate_keeper_db")
+        if connection.is_connected():
+            cursor = connection.cursor()
+
+            try:
+                # select data
+                select_query = f"SELECT * FROM birthdate_keeper_tb where EXTRACT(MONTH FROM birthdate) = EXTRACT(MONTH FROM CURRENT_DATE) and EXTRACT(day FROM birthdate) = EXTRACT(DAY FROM CURRENT_DATE)"
+                cursor.execute(select_query)
+                birthdate_data = cursor.fetchall()
+            except mysql.connector.Error as error:
+                print(error)
+            finally:
+                cursor.close()
+    except mysql.connector.Error as error:
+        print(error)
+    finally:
+        if connection:
+            connection.commit()
+            connection.close()
+    return birthdate_data
 
 def fetch_birthdates_from_db():
     birthdate_data = None
@@ -38,8 +62,8 @@ def fetch_birthdates_from_db():
             cursor = connection.cursor()
 
             try:
-                # insert data
-                select_query = f"select * from birthdate_keeper_tb"
+                # select data
+                select_query = f"SELECT * FROM birthdate_keeper_tb order by EXTRACT(MONTH FROM birthdate)"
                 cursor.execute(select_query)
                 birthdate_data = cursor.fetchall()
             except mysql.connector.Error as error:
