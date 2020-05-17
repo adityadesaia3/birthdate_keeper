@@ -79,6 +79,14 @@ def update_birthdate_db():
         if allowed_file(photo_name):
             # get maximum unique id from the database
             photo_name = f"{str(b_id)}.{photo_name.rsplit('.')[1].lower()}"
+
+            # remove previous files
+            dir_path = current_directory_path + "/static/uploaded_photos/"
+            files_to_remove = os.listdir(dir_path)
+            for file in files_to_remove:
+                if file.startswith(str(b_id)):
+                    os.remove(os.path.join(dir_path, file))
+
             photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_name))
     except:
         photo_name = None
@@ -94,7 +102,14 @@ def delete_birthdate_db():
     b_id = request.form["b_id"]
 
     delete_birthdate_from_db(b_id)
-    print("deleted")
+
+    # remove all files corresponding to deleted birthdate
+    dir_path = current_directory_path + "/static/uploaded_photos/"
+    files_to_remove = os.listdir(dir_path)
+
+    for file in files_to_remove:
+        if file.startswith(str(b_id)):
+            os.remove(os.path.join(dir_path, file))
 
     return redirect(url_for("display_birthdates"))
 

@@ -63,7 +63,7 @@ def fetch_birthdates_from_db():
 
             try:
                 # select data
-                select_query = f"SELECT * FROM birthdate_keeper_tb order by EXTRACT(MONTH FROM birthdate)"
+                select_query = f"SELECT * FROM birthdate_keeper_tb order by EXTRACT(MONTH FROM birthdate), EXTRACT(DAY FROM birthdate)"
                 cursor.execute(select_query)
                 birthdate_data = cursor.fetchall()
             except mysql.connector.Error as error:
