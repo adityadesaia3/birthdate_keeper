@@ -35,4 +35,4 @@ jobs:
         app-name: 'birthdate-keeper'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_7b00a40f18664756bbb90fc36dc244ce }}
-        package: '.\myapp.zip'
+        package: '.\app.zip'
