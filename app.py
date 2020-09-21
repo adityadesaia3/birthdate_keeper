@@ -22,10 +22,9 @@ def allowed_file(filename):
 
 @app.route("/")
 def app():
-    # create_db()
-    # birthdates_today = fetch_birthdates_today()
-    # return render_template("app.html", birthdates_today = birthdates_today)
-    return render_template("app.html")
+    create_db()
+    birthdates_today = fetch_birthdates_today()
+    return render_template("app.html", birthdates_today = birthdates_today)
 
 @app.route("/add_birthdate_db", methods=["GET", "POST"])
 def add_birthdate_db():
