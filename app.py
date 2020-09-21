@@ -21,10 +21,10 @@ def allowed_file(filename):
 
 
 @app.route("/")
-def index():
+def app():
     create_db()
     birthdates_today = fetch_birthdates_today()
-    return render_template("index.html", birthdates_today = birthdates_today)
+    return render_template("app.html", birthdates_today = birthdates_today)
 
 @app.route("/add_birthdate_db", methods=["GET", "POST"])
 def add_birthdate_db():
@@ -44,7 +44,7 @@ def add_birthdate_db():
     # Add input birthdate data to database
     add_birthdate_to_db(name, birthdate, photo_name)
 
-    return redirect(url_for("index"))
+    return redirect(url_for("app"))
 
 @app.route("/display_birthdates")
 def display_birthdates():
