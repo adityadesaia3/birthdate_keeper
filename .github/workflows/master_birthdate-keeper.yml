@@ -31,4 +31,4 @@ jobs:
       with:
         app-name: 'birthdate-keeper'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e46ea8a19f0a42e49e98dfb47b5ce74f }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a1fa2c87f2844922a137d43cd4166f91 }}
